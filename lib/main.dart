@@ -18,35 +18,47 @@ class _CounterScreenState extends State<CounterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Meu contador"),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
+        appBar: AppBar(
+          title: Text("Meu contador"),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+                child: Text(
+              'Você pressinou o botão',
+              style: TextStyle(
+                fontSize: 24,
+              ),
+            )),
+            Center(
               child: Text(
-            'Você pressinou o botão',
-            style: TextStyle(
-              fontSize: 24,
+                '$resultado',
+                style: TextStyle(fontSize: 34),
+              ),
             ),
-          )),
-          Center(
-            child: Text(
-              '$resultado',
-              style: TextStyle(fontSize: 34),
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print('Botão pressionado');
-            setState(() {
-              resultado += 1;
-            });
-          },
-          child: Icon(Icons.add)),
-    );
+          ],
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+                onPressed: () {
+                  print('Botão pressionado');
+                  setState(() {
+                    resultado -= 1;
+                  });
+                },
+                child: Icon(Icons.remove)),
+            FloatingActionButton(
+                onPressed: () {
+                  print('Botão pressionado');
+                  setState(() {
+                    resultado += 1;
+                  });
+                },
+                child: Icon(Icons.add)),
+          ],
+        ));
   }
 }

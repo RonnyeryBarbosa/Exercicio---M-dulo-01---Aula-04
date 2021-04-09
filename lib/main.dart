@@ -1,3 +1,4 @@
+import 'package:counter/componets/button.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,6 +16,26 @@ class CounterScreen extends StatefulWidget {
 
 class _CounterScreenState extends State<CounterScreen> {
   var resultado = 0;
+  /*
+   * Incrementa 1 a quantidade
+   */
+  void add() {
+    setState(() {
+      resultado += 1;
+    });
+  }
+
+/*
+ * Decrementa 1 no resultado
+ */
+  void remove() {
+    setState(() {
+      if (resultado == 0) return;
+
+      resultado -= 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,22 +63,25 @@ class _CounterScreenState extends State<CounterScreen> {
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            FloatingActionButton(
-                onPressed: () {
-                  print('Botão pressionado');
-                  setState(() {
-                    resultado -= 1;
-                  });
+            Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: ButtonDefault(
+                Icon(
+                  Icons.add,
+                ),
+                () {
+                  add();
                 },
-                child: Icon(Icons.remove)),
-            FloatingActionButton(
-                onPressed: () {
-                  print('Botão pressionado');
-                  setState(() {
-                    resultado += 1;
-                  });
-                },
-                child: Icon(Icons.add)),
+              ),
+            ),
+            ButtonDefault(
+              Icon(
+                Icons.remove,
+              ),
+              () {
+                remove();
+              },
+            ),
           ],
         ));
   }

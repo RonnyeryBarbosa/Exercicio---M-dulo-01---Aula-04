@@ -1,4 +1,5 @@
 import 'package:counter/componets/button.dart';
+import 'package:counter/counter/counter_controller.dart';
 import 'package:flutter/material.dart';
 
 class CounterScreen extends StatefulWidget {
@@ -7,25 +8,25 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
-  var resultado = 0;
+  final controller = CounterController();
 
   /*
    * Incrementa 1 a quantidade
    */
-  void add() {
-    setState(() {
-      resultado += 1;
-    });
-  }
+  // void add() {
+  //   setState(() {
+  //     resultado += 1;
+  //   });
+  // }
 
   /*
  * Decrementa 1 no resultado
  */
   void remove() {
-    setState(() {
-      if (resultado == 0) return;
-      resultado -= 1;
-    });
+    // setState(() {
+    //   if (resultado == 0) return;
+    //   resultado -= 1;
+    // });
   }
 
   @override
@@ -46,7 +47,7 @@ class _CounterScreenState extends State<CounterScreen> {
             )),
             Center(
               child: Text(
-                '$resultado',
+                controller.getCounter(),
                 style: TextStyle(fontSize: 34),
               ),
             ),
@@ -62,7 +63,9 @@ class _CounterScreenState extends State<CounterScreen> {
                   Icons.add,
                 ),
                 () {
-                  add();
+                  setState(() {
+                    controller.incrementCounter();
+                  });
                 },
               ),
             ),
@@ -71,7 +74,9 @@ class _CounterScreenState extends State<CounterScreen> {
                 Icons.remove,
               ),
               () {
-                remove();
+                setState(() {
+                  controller.decrementCounter();
+                });
               },
             ),
           ],

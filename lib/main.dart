@@ -1,4 +1,4 @@
-import 'package:counter/counter/counter_screen.dart';
+import 'package:counter/counter/counter_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
